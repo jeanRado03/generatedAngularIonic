@@ -1,0 +1,42 @@
+ion-toolbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  ion-title {
+    order: 1; /* Met le titre en haut */
+  }
+
+  ion-buttons {
+    order: 2; /* Met le bouton en bas */
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #e9ecef;
+  }
+
+  ion-button {
+    margin: 0;
+    padding: 5px 10px;
+  }
+}

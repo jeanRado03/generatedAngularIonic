@@ -1,0 +1,12 @@
+<ion-content [fullscreen]="true">
+    <form (ngSubmit)="submitForm()" #myForm="ngForm">
+      <ion-item>
+        <ion-input label="Email" type="email" placeholder="email@domain.com" [(ngModel)]="formData.email" [ngModelOptions]="{standalone: true}"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Password input" type="password" [(ngModel)]="formData.password" [ngModelOptions]="{standalone: true}"></ion-input>
+      </ion-item>
+      <ion-button type="submit">Connect</ion-button>
+    </form>
+    <!--<ion-button (click)="signUp">Sign Up</ion-button>-->
+</ion-content>

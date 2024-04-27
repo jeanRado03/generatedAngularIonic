@@ -1,0 +1,98 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-title>{{ folder }}</ion-title>
+    </ion-buttons>
+    <ion-button slot="start" color="primary" (click)="loginOut()">Log Out</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ folder }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <table *ngIf="!afficherFormulaire && !updateFormulaire">
+    <thead>
+      <tr>
+        			<th> Idfilm </th>
+			<th> Last Update </th>
+			<th> Id </th>
+			<th> Idstore </th>
+
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of object">
+        		<td>{{item.film.id}}</td>
+		<td>{{item.lastUpdate}}</td>
+		<td>{{item.id}}</td>
+		<td>{{item.store.id}}</td>
+
+        <td><ion-button color="primary" (click)="showUpdate(item)">Update</ion-button></td>
+        <td><ion-button color="danger" (click)="deleteItem(item)">Delete</ion-button></td>
+      </tr>
+    </tbody>
+    <div style="display: flex;">
+              <ion-button (click)="loadForeignKey()">Add Inventory</ion-button>
+              <div *ngIf="currentPage !== 1">
+                <ion-button color="secondary" (click)="functionPervious()">Prev..</ion-button>
+              </div>
+                <div *ngFor="let page of pages">
+                  <ion-button color="secondary" *ngIf="totalPages !== 1" (click)="goToPage(page+1)">{{ page + 1 }}</ion-button>
+                </div>
+              <div *ngIf="currentPage !== totalPages">
+                <ion-button color="secondary" (click)="functionNext()">Next..</ion-button>
+              </div>
+            </div>
+  </table>
+  <form *ngIf="afficherFormulaire" (ngSubmit)="submitForm()" #myForm="ngForm">
+    		<label className="form-label">film</label> 
+	 	<select name="film" [(ngModel)]="formData.film" (ngModelChange)="updateSelectedOption($event)">
+			<option *ngFor="let option of foreignkey" [ngValue]="option">{{ option.name }}</option>
+		</select>	<label className="form-label">lastUpdate</label> 
+	 	<input type="datetime-local" placeholder="lastUpdate" name="lastUpdate" [(ngModel)]="formData.lastUpdate"/><br/>
+		<label className="form-label">store</label> 
+	 	<select name="store" [(ngModel)]="formData.store" (ngModelChange)="updateSelectedOption($event)">
+			<option *ngFor="let option of foreignkey" [ngValue]="option">{{ option.name }}</option>
+		</select><br/>
+    <ion-button type="submit">Save</ion-button><br/>
+    <ion-button (click)="afficherFormulaire = !afficherFormulaire">Back</ion-button>
+  </form>
+  <form *ngIf="updateFormulaire" (ngSubmit)="updateItem()" #myForm="ngForm">
+    		<label className="form-label">film</label> 
+	 	<select name="film" [(ngModel)]="updateData.film" (ngModelChange)="updateSelectedOption($event)">
+			<option *ngFor="let option of foreignkey" [ngValue]="option">{{ option.name }}</option>
+	<option *ngFor="let option of foreignkey" [ngValue]="option">{{ option.name }}</option>
+	
+	</select>	<label className="form-label">lastUpdate</label> 
+	 	<input type="datetime-local" placeholder="lastUpdate" name="lastUpdate" [(ngModel)]="updateData.lastUpdate"/><br/>
+		<label className="form-label">id</label> 
+	 	<input type="hidden" placeholder="id" name="id" [(ngModel)]="updateData.id"/><br/>
+		<label className="form-label">store</label> 
+	 	<select name="store" [(ngModel)]="updateData.store" (ngModelChange)="updateSelectedOption($event)">
+			<option *ngFor="let option of foreignkey" [ngValue]="option">{{ option.name }}</option>
+	<option *ngFor="let option of foreignkey" [ngValue]="option">{{ option.name }}</option>
+	
+	</select><br/>
+    <ion-button type="submit">Update</ion-button><br/>
+    <ion-button (click)="updateFormulaire = !updateFormulaire">Back</ion-button>
+  </form>
+</ion-content>
+<!--<ion-item>
+    	
+	
+	
+	
+    	
+	
+	
+	
+	
+    	
+    id
+</ion-item>-->

@@ -1,0 +1,23 @@
+<ion-content [fullscreen]="true">
+  <form (ngSubmit)="submitForm()" #myForm="ngForm">
+    <ion-item>
+      <ion-input label="Nom" type="text" [(ngModel)]="formData.nom" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Prenom" type="text" [(ngModel)]="formData.prenom" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Date de naissance" type="date" [(ngModel)]="formData.date_naissance" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Email" type="email" placeholder="email@domain.com" [(ngModel)]="formData.email" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Telephone" type="tel" [(ngModel)]="formData.phone" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Password input" type="password" [(ngModel)]="formData.password" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <ion-button type="submit">Confirmer</ion-button>
+  </form>
+</ion-content>
